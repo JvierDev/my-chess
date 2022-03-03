@@ -1,0 +1,14 @@
+.app-left-menu {
+    a {
+        text-decoration: none;
+        color: inherit;
+        display: inherit;
+    }
+
+    .active-nav-link {
+        color: #0292e5;
+        .MuiListItemIcon-root {
+            color: #0292e5;
+        }
+    }
+}
