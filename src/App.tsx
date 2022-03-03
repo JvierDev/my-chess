@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import LeftMenu from "./components/LeftMenu";
+import { HashRouter } from "react-router-dom";
+import Routing from "./routing";
+import useStyles from "./App.styles";
+import { Container, CssBaseline } from "@material-ui/core";
+import MenuAppBar from "./components/MenuAppBar";
+import { AppThemeProvider } from "./providers/theme.provider";
+
+const leftPanelWidthOpened = 250;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const classes = useStyles();
+    const [leftPanelOpened, setLeftPanelOpened] = useState<boolean>(false);
+
+    const handleDrawerToggle = () => {
+        setLeftPanelOpened(!leftPanelOpened);
+    };
+
+    return (
+        <div className="App">
+            <AppThemeProvider>
+                <CssBaseline />
+                <MenuAppBar />
+                <HashRouter>
+                    <LeftMenu
+                        open={leftPanelOpened}
+                        handleDrawerToggle={handleDrawerToggle}
+                        width={leftPanelWidthOpened}
+                    />
+                    <Container maxWidth={false} className={classes.main}>
+                        <Routing />
+                    </Container>
+                </HashRouter>
+            </AppThemeProvider>
+        </div>
+    );
 }
 
 export default App;
