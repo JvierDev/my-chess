@@ -1,67 +1,54 @@
 import { Button, Grid, TextField } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { getPlayer, getStats } from "../../api/profile.api";
 import { useDispatch } from "react-redux";
 import { setProfile } from "../../stores/ducks/profile/profile";
 import { UserInfoData, UserStatsData } from "../../interfaces/interface";
+import useStyles from "./styles";
 
 const Searcher = () => {
+    const classes = useStyles();
     const [username, setUsername] = useState<string>("");
-    const [userInfo, setUserInfo] = useState<UserInfoData | null>(null);
-    const [userStats, setUserStats] = useState<UserStatsData[]>([]);
 
     const handleUsernameField = (value: string) => {
         setUsername(value);
     };
 
-    const getData = () => {
-        getPlayer(username)
-            .then((response: any) => {
-                setUserInfo(response);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-        getStats(username)
-            .then((response: any) => {
-                setUserStats([
-                    {
-                        chess_blitz: response.chess_blitz,
-                        chess_rapid: response.chess_rapid,
-                    },
-                ]);
-            })
-            .catch((err) => {
-                console.error(err);
-            });
-    };
-
     const dispatch = useDispatch();
 
-    dispatch(
-        setProfile({
-            username: userInfo?.username,
-            name: userInfo?.name,
-            avatar: userInfo?.avatar,
-            joined: userInfo?.joined,
-            last_online: userInfo?.last_online,
-            followers: userInfo?.followers,
-            url: userInfo?.url,
-            stats: userStats[0] as UserStatsData,
-        })
-    );
+    const getData = useCallback(async () => {
+        const requests: UserInfoData | UserStatsData | any = [
+            getPlayer(username),
+            getStats(username),
+        ];
+        const [responsePlayer, responseStats] = await Promise.all(requests);
+
+        dispatch(
+            setProfile({
+                username: (responsePlayer as UserInfoData).username,
+                name: (responsePlayer as UserInfoData).name,
+                avatar: (responsePlayer as UserInfoData).avatar,
+                joined: (responsePlayer as UserInfoData).joined,
+                last_online: (responsePlayer as UserInfoData).last_online,
+                followers: (responsePlayer as UserInfoData).followers,
+                url: (responsePlayer as UserInfoData).url,
+                stats: {
+                    chess_blitz: (responseStats as UserStatsData).chess_blitz,
+                    chess_rapid: (responseStats as UserStatsData).chess_rapid,
+                },
+            })
+        );
+    }, [dispatch, username]);
 
     return (
         <Grid container spacing={3}>
-            <Grid item xs={6}>
+            <Grid item xs={7} md={5}>
                 <TextField
-                    id="outlined-full-width"
+                    className={classes.textField}
                     label="Username"
-                    style={{ margin: 8 }}
                     placeholder="Username"
                     fullWidth
-                    margin="normal"
                     InputLabelProps={{
                         shrink: true,
                     }}
@@ -70,8 +57,9 @@ const Searcher = () => {
                     value={username}
                 />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={5}>
                 <Button
+                    className={classes.searchButton}
                     variant="outlined"
                     color="primary"
                     size="large"
