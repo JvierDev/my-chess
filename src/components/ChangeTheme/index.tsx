@@ -44,7 +44,7 @@ const ChangeTheme = (props: Props) => {
                 >
                     {icon}
                 </IconButton>
-                <p>Cambiar tema</p>
+                <p>Change theme</p>
             </MenuItem>
         );
     }
@@ -56,7 +56,7 @@ const ChangeTheme = (props: Props) => {
                     <IconButton edge="end" color="inherit" aria-label="mode">
                         {icon}
                     </IconButton>
-                    <p>Cambiar tema</p>
+                    <p>Change theme</p>
                 </MenuItem>
             );
         }
