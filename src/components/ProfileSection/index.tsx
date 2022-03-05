@@ -27,7 +27,7 @@ const ProfileSection = () => {
     const [isData, setIsData] = useState<boolean>(false);
 
     useEffect(() => {
-        const { avatar, stats, ...rest } = profileData;
+        const { avatar, name, stats, ...rest } = profileData;
         setIsData(
             Object.values(rest).every((item) => {
                 return item !== undefined;
@@ -72,7 +72,11 @@ const ProfileSection = () => {
                                     <ListItem>
                                         <ListItemText
                                             className={classes.listItemText}
-                                            primary={`Name: ${profileData.name}`}
+                                            primary={`Name: ${
+                                                profileData.name
+                                                    ? profileData.name
+                                                    : "Not available"
+                                            }`}
                                         />
                                     </ListItem>
                                     <ListItem>
