@@ -10,7 +10,6 @@ import { useState } from "react";
 import useStyles from "./styles";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import ChangeTheme from "../ChangeTheme";
-// import logo from "../../assets/alaya.png";
 
 const MenuAppBar = () => {
     const classes = useStyles();
@@ -45,7 +44,6 @@ const MenuAppBar = () => {
         <div className={classes.grow}>
             <AppBar position="static" className={classes.gdaaAppBar}>
                 <Toolbar className={classes.toolbar}>
-                    {/* <img src={logo} alt={"Alaya"} className={classes.logo} /> */}
                     <Typography className={classes.title} variant="h6" noWrap>
                         My Chess
                     </Typography>

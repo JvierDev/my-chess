@@ -8,6 +8,7 @@ import {
     LeaderboardData,
     EnhancedLeaderboardTableProps,
 } from "../../interfaces/interface";
+import useStyles from "./styles";
 
 interface HeadCell {
     disablePadding: boolean;
@@ -41,7 +42,8 @@ const headCells: HeadCell[] = [
 ];
 
 const TableEquipmentHead = (props: EnhancedLeaderboardTableProps) => {
-    const { classes, order, orderBy, onRequestSort } = props;
+    const classes = useStyles();
+    const { order, orderBy, onRequestSort } = props;
     const createSortHandler =
         (property: keyof LeaderboardData) =>
         (event: React.MouseEvent<unknown>) => {
@@ -53,8 +55,10 @@ const TableEquipmentHead = (props: EnhancedLeaderboardTableProps) => {
             <TableRow>
                 {headCells.map((headCell) => (
                     <TableCell
+                        className={classes.cell}
+                        style={{ width: `${100 / headCells.length}%` }}
                         key={headCell.id}
-                        align="right"
+                        align="center"
                         padding={headCell.disablePadding ? "none" : "normal"}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >

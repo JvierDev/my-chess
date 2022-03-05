@@ -5,7 +5,7 @@ const LeaderboardView = () => {
     return (
         <Paper>
             <Card>
-                <CardHeader title="Leaderboard" />
+                <CardHeader title="Daily Leaderboard" />
                 <CardContent>
                     <TableLeaderboard numberRows={10} />
                 </CardContent>

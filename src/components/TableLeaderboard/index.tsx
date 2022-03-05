@@ -104,11 +104,10 @@ const TableLeaderboard = (props: Props) => {
                         <TableContainer>
                             <Table
                                 className={classes.table}
-                                aria-labelledby="tableTitle"
-                                aria-label="enhanced table"
+                                aria-labelledby="Leaderboard"
+                                aria-label="Leaderboard table"
                             >
                                 <TableHeadLeaderboard
-                                    classes={classes}
                                     numSelected={selected.length}
                                     order={order}
                                     orderBy={orderBy}
@@ -131,22 +130,22 @@ const TableLeaderboard = (props: Props) => {
                                                     tabIndex={-1}
                                                     key={row.rank}
                                                 >
-                                                    <TableCell align="right">
+                                                    <TableCell align="center">
                                                         {row.rank}
                                                     </TableCell>
-                                                    <TableCell align="right">
+                                                    <TableCell align="center">
                                                         {row.username}
                                                     </TableCell>
-                                                    <TableCell align="right">
+                                                    <TableCell align="center">
                                                         {row.score}
                                                     </TableCell>
-                                                    <TableCell align="right">
+                                                    <TableCell align="center">
                                                         {row.win_count}
                                                     </TableCell>
-                                                    <TableCell align="right">
+                                                    <TableCell align="center">
                                                         {row.draw_count}
                                                     </TableCell>
-                                                    <TableCell align="right">
+                                                    <TableCell align="center">
                                                         {row.loss_count}
                                                     </TableCell>
                                                 </TableRow>

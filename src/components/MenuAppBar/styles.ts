@@ -12,14 +12,8 @@ const useStyles = makeStyles((theme) => ({
     toolbar: {
         paddingLeft: 5,
     },
-    logo: {
-        height: 20,
-    },
     grow: {
         flexGrow: 1,
-    },
-    mobileUserSection: {
-        padding: 20,
     },
     title: {
         paddingLeft: 15,

@@ -1,9 +1,6 @@
-import useStyles from "../components/TableLeaderboard/styles";
-
 export type Order = "asc" | "desc";
 
 export interface EnhancedLeaderboardTableProps {
-    classes: ReturnType<typeof useStyles>;
     numSelected: number;
     onRequestSort: (
         event: React.MouseEvent<unknown>,
