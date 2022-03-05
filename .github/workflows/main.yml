@@ -18,7 +18,7 @@ jobs:
         REACT_APP_CHESS_API: ${{ secrets.REACT_APP_CHESS_API }}
 
     - name: Deploy
-      uses: JvierDev/github-pages-deploy-action@releases/v3
+      uses: JvierDev/my-chessn@releases/v1
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_KEY }}
         BRANCH: gh-pages
