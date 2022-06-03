@@ -2,6 +2,12 @@
 
 It is an application to view statistics of a [Chess.com](https://www.chess.com/) user.
 
+## Pre-requisites 📋
+
+-   _Node v14_
+
+-   _TypeScript_
+
 ## Instalation 💾
 
 ### `npm install`
