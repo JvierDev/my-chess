@@ -5,8 +5,7 @@ const height = 70;
 
 const useStyles = makeStyles((theme) => ({
     gdaaAppBar: {
-        backgroundColor:
-            theme.palette.type === APP_THEMES.dark ? "#333333" : "#000000",
+        backgroundColor: "#080808",
         height: height,
     },
     toolbar: {
